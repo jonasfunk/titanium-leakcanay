@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+repositories {
+	google()
+	jcenter()
+	mavenCentral()
+}
+
+dependencies {
+	compile('com.squareup.leakcanary:leakcanary-android:1.6.1') {
+    	transitive = true;
+  	}
+}
+
+task getDeps(type: Copy) {
+	from sourceSets.main.runtimeClasspath
+	exclude 'support-*'
+	into 'lib/'
+}
